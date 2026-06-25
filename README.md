@@ -102,7 +102,7 @@ Sistem mimarisi (PostgreSQL, RabbitMQ, Spring Boot, Next.js) tamamen konteyneriz
    **http://localhost:3000**
 
 ---
-*Muhammed Ali Işık | **https://muhammedaliisik.com/***
+*Muhammed Ali Işık | [muhammedaliisik.com](https://muhammedaliisik.com/)*
 
 <br>
 <br>
@@ -206,4 +206,4 @@ The system architecture (PostgreSQL, RabbitMQ, Spring Boot, Next.js) is fully co
    **http://localhost:3000**
 
 ---
-*Muhammed Ali Işık | **https://muhammedaliisik.com/***
+*Muhammed Ali Işık | [muhammedaliisik.com](https://muhammedaliisik.com/)*
