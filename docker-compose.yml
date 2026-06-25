@@ -1,0 +1,51 @@
+services:
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: dataforge-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: dataforge_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: dataforge-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  backend:
+    build:
+      context: ./core
+    container_name: dataforge-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/dataforge_db
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - postgres-db
+      - rabbitmq
+
+  frontend:
+    build:
+      context: ./dataforge-ui
+    container_name: dataforge-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
